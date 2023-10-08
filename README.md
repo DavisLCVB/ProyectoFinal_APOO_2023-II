@@ -1,12 +1,14 @@
 # Proyecto Final
 ---
 ## Información Institucional
-
-**Universidad Nacional Mayor de San Marcos**\
-**Facultad de Ingeniería de Sistemas e Informática**\
-**Escuela Profesional de Ingeniería de Sistemas**
+<center>
+<p><b>Universidad Nacional Mayor de San Marcos<br>
+Facultad de Ingeniería de Sistemas e Informática<br>
+Escuela Profesional de Ingeniería de Sistema<b></p>
 
 ![UNMSM logo](LogoUNSMN/Logo%20UNMSM.png "Universidad Nacional Mayor de San Marcos")
+</center>
+
 ## Descripción
 Proyecto Final del Curso de *Algorítmica y Programación Orientada a Objetos* (semestre 2023-II).
 
