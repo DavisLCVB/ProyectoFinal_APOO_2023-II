@@ -10,17 +10,15 @@
  * unificada para gestionar la información y las acciones relacionadas con el
  * personal de la construcción.
  */
-package com.grupo8.finalproject.domain.trabajadores;
+package com.grupo8.finalproject.domain.empleados;
 
 import java.util.Objects;
 
 /**
- * Desarrollado por Davis Cartagena
+ * @author Davis Cartagena
  */
-public class Trabajador {
+public class Trabajador extends Empleado {
 
-    protected String nombres;
-    protected String apellidos;
     protected int iDTrabajador;
     protected double salario;
     protected boolean estado;
@@ -31,36 +29,12 @@ public class Trabajador {
         this.iDTrabajador = ++Trabajador.indTrabajador;
     }
 
-    public Trabajador(String nombres, String apellidos, int iDTrabajador, double salario, boolean estado) {
-        this.iDTrabajador = ++Trabajador.indTrabajador;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.salario = salario;
-        this.estado = estado;
-    }
-
     public boolean isEstado() {
         return estado;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
-    }
-
-    public String getNombres() {
-        return nombres;
-    }
-
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
     }
 
     public double getSalario() {
@@ -82,8 +56,8 @@ public class Trabajador {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.nombres);
-        hash = 97 * hash + Objects.hashCode(this.apellidos);
+        hash = 97 * hash + Objects.hashCode(this.nombre);
+        hash = 97 * hash + Objects.hashCode(this.apellido);
         hash = 97 * hash + this.iDTrabajador;
         hash = 97 * hash + (int) (Double.doubleToLongBits(this.salario) ^ (Double.doubleToLongBits(this.salario) >>> 32));
         hash = 97 * hash + (this.estado ? 1 : 0);
@@ -112,10 +86,10 @@ public class Trabajador {
         if (this.estado != other.estado) {
             return false;
         }
-        if (!Objects.equals(this.nombres, other.nombres)) {
+        if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
-        if (!Objects.equals(this.apellidos, other.apellidos)) {
+        if (!Objects.equals(this.apellido, other.apellido)) {
             return false;
         }
         if (!Objects.equals(this.accion, other.accion)) {
@@ -129,8 +103,8 @@ public class Trabajador {
         String trabajador = "";
         trabajador += "\t.:Trabajador:.\n";
         trabajador += "ID del trabajador: " + this.iDTrabajador + "\n";
-        trabajador += "Nombres: " + this.nombres + "\n";
-        trabajador += "Apellidos: " + this.apellidos + "\n";
+        trabajador += "Nombres: " + this.nombre + "\n";
+        trabajador += "Apellidos: " + this.apellido + "\n";
         trabajador += "Estado: " + (this.estado ? "Trabajando" : "Descansando") + "\n";
         trabajador += "Acción: " + this.accion + "\n";
         return trabajador;
