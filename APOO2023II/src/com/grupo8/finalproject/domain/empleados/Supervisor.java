@@ -5,6 +5,9 @@
  */
 package com.grupo8.finalproject.domain.empleados;
 
+import com.grupo8.finalproject.domain.obras.*;
+import java.util.ArrayList;
+
 /**
  * @author Davis Cartagena
  */
@@ -12,6 +15,8 @@ public class Supervisor extends Empleado {
 
     private int iDSupervisor;
     private static int indSupervisor;
+    private ArrayList<Trabajador> trabajadores;
+    private Obra obra;
 
     public Supervisor() {
         this.iDSupervisor = ++Supervisor.indSupervisor;

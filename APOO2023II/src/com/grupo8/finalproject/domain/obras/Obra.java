@@ -3,7 +3,6 @@
  */
 package com.grupo8.finalproject.domain.obras;
 
-import com.grupo8.finalproject.domain.empleados.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -19,8 +18,6 @@ public class Obra {
     protected LocalDate fechaFin;
     protected double presupuesto;
     protected int complejidad;
-    protected ArrayList<Trabajador> trabajadores;
-    protected Supervisor supervisor;
     protected int velocidadObra;
     protected int iDObra;
     private static int indObra;
@@ -29,14 +26,13 @@ public class Obra {
         this.iDObra = ++Obra.indObra;
     }
 
-    public Obra(String nombreObra, String ubicacionObra, LocalDate fechaInicio, LocalDate fechaFin, double presupuesto, int complejidad, Supervisor supervisor, int velocidadObra) {
+    public Obra(String nombreObra, String ubicacionObra, LocalDate fechaInicio, LocalDate fechaFin, double presupuesto, int complejidad, int velocidadObra) {
         this.nombreObra = nombreObra;
         this.ubicacionObra = ubicacionObra;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.presupuesto = presupuesto;
         this.complejidad = complejidad;
-        this.supervisor = supervisor;
         this.velocidadObra = velocidadObra;
         this.iDObra = ++Obra.indObra;
     }
@@ -87,14 +83,6 @@ public class Obra {
 
     public void setComplejidad(int complejidad) {
         this.complejidad = complejidad;
-    }
-
-    public Supervisor getSupervisor() {
-        return supervisor;
-    }
-
-    public void setSupervisor(Supervisor supervisor) {
-        this.supervisor = supervisor;
     }
 
     public int getVelocidadObra() {
@@ -155,9 +143,6 @@ public class Obra {
         if (!Objects.equals(this.fechaFin, other.fechaFin)) {
             return false;
         }
-        if (!Objects.equals(this.supervisor, other.supervisor)) {
-            return false;
-        }
         return true;
     }
 
@@ -186,11 +171,6 @@ public class Obra {
                 break;
             default:
                 break;
-        }
-        obra += "Supervisor: " + this.supervisor.getNombre() + " " + this.supervisor.getApellido() + "\n";
-        obra += "Trabajadores: \n";
-        for (int i = 0; i < this.trabajadores.size(); i++) {
-            obra += "- " + this.trabajadores.get(i).getNombre() + " " + this.trabajadores.get(i) + "\n";
         }
         return obra;
     }
