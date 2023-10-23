@@ -10,7 +10,7 @@
  * unificada para gestionar la información y las acciones relacionadas con el
  * personal de la construcción.
  */
-package com.grupo8.finalproject.domain.empleados;
+package com.grupo8.finalproject.domain.empleados.padres;
 
 import java.util.Objects;
 

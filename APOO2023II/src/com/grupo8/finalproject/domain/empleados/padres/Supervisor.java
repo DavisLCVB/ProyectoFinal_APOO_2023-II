@@ -3,8 +3,9 @@
  * generar informe sobre las obras en un archivo externo. Esta clase no tendrá 
  * clases derivadas
  */
-package com.grupo8.finalproject.domain.empleados;
+package com.grupo8.finalproject.domain.empleados.padres;
 
+import com.grupo8.finalproject.domain.empleados.padres.Trabajador;
 import com.grupo8.finalproject.domain.obras.*;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Supervisor extends Empleado {
 
-    private int iDSupervisor;
+    private int iDSupervisor; 
     private static int indSupervisor;
     private ArrayList<Trabajador> trabajadores;
     private Obra obra;

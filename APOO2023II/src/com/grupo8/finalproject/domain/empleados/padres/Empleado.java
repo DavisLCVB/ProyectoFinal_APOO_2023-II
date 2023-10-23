@@ -3,7 +3,7 @@
  * la clase de Supervisor. Esta contiene los elementos básicos: Nombre y 
  * apellido.
  */
-package com.grupo8.finalproject.domain.empleados;
+package com.grupo8.finalproject.domain.empleados.padres;
 
 /**
  * @author Davis Cartagena
