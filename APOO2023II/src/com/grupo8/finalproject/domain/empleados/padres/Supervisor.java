@@ -5,7 +5,6 @@
  */
 package com.grupo8.finalproject.domain.empleados.padres;
 
-import com.grupo8.finalproject.domain.empleados.padres.Trabajador;
 import com.grupo8.finalproject.domain.obras.*;
 import java.util.ArrayList;
 
