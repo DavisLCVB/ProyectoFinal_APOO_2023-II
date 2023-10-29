@@ -2,7 +2,7 @@
  * Esta clase es la que ayuda a poder generar números aleatorios sin necesidad
  * de crear este tipo de objetos constantemente
  */
-package com.grupo8.finalproject.domain.utilidades;
+package com.grupo8.finalproject.utilities;
 
 /**
  * @author Davis Cartagena

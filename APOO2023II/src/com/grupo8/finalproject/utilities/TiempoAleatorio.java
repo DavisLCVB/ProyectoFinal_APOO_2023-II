@@ -2,7 +2,7 @@
  * Esta clase usa a la clase de Aleatoriedad y nos permite generar un tiempo
  * aleatorio según convenga
  */
-package com.grupo8.finalproject.domain.utilidades;
+package com.grupo8.finalproject.utilities;
 
 /**
  * @author Davis Cartagena
