@@ -58,4 +58,7 @@ public class Supervisor extends Empleado {
         return supervisor;
     }
 
+    public int getiDSupervisor() {
+        return iDSupervisor;
+    }
 }

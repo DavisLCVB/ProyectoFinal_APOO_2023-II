@@ -6,6 +6,7 @@
 package com.grupo8.finalproject.userinterface;
 
 import com.grupo8.finalproject.userinterface.login.*;
+import com.grupo8.finalproject.userinterface.mainmenu.MainMenuPanel;
 import java.awt.Color;
 import javax.swing.*;
 
@@ -16,7 +17,11 @@ import javax.swing.*;
 public class MainWindow extends JFrame {
 
     public LoginPanel loginPanel;
-    public JPanel panel;
+    public MainMenuPanel mainMenuPanel;
+    public StatusBar statusBar;
+    public ExitButtonPanel exitButtonPanel;
+    public int coordX;
+    public int coordY;
 
     public MainWindow() {
         this.setSize(1200, 800);
@@ -29,11 +34,15 @@ public class MainWindow extends JFrame {
     }
 
     public void initComponents() {
+        statusBar = new StatusBar();
+        this.add(statusBar);
+        
+        exitButtonPanel = new ExitButtonPanel();
+        this.add(exitButtonPanel);
+        
         loginPanel = new LoginPanel();
         this.add(loginPanel);
-        
-        panel = new JPanel();
-        panel.setBounds(0,0,1200,800);
-        panel.setBackground(Color.BLUE);
+
+        mainMenuPanel = new MainMenuPanel();
     }
 }
