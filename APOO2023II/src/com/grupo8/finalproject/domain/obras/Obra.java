@@ -21,6 +21,10 @@ public class Obra {
     protected int velocidadObra;
     protected int iDObra;
     private static int indObra;
+    protected int NroObreros = 0;
+    protected int NroElectricistas = 0;
+    protected int NroPintores = 0;
+    protected int NroPlomeros = 0;
 
     public Obra() {
         this.iDObra = ++Obra.indObra;
@@ -93,6 +97,31 @@ public class Obra {
         this.velocidadObra = velocidadObra;
     }
 
+    public int getiDObra() {
+        return iDObra;
+    }
+
+    public void setiDObra(int iDObra) {
+        this.iDObra = iDObra;
+    }
+
+    public int getNroObreros() {
+        return NroObreros;
+    }
+
+    public int getNroElectricistas() {
+        return NroElectricistas;
+    }
+
+    public int getNroPintores() {
+        return NroPintores;
+    }
+
+    public int getNroPlomeros() {
+        return NroPlomeros;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 5;

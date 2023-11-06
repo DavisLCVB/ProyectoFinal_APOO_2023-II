@@ -1,7 +1,4 @@
-/*
- * Clase encargada de almacenar y mostrar la información de los trabajadores
- */
-package com.grupo8.finalproject.userinterface.mainmenu;
+package com.grupo8.finalproject.userinterface.mainmenu.workerspanel;
 
 import components.JPanelRound;
 import java.awt.Color;
@@ -10,12 +7,14 @@ import java.awt.FontFormatException;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
- * @author Davis Cartagena
+ *
+ * @author leocv
  */
-public class WorkersPanel extends JPanelRound {
+public class WorkersInactive extends JPanelRound {
 
     private JLabel lbTrabajador;
     private JLabel lbCantTrabajador;
@@ -26,8 +25,8 @@ public class WorkersPanel extends JPanelRound {
     private JLabel lbTareaActual;
     private JPanelRound prTrabajador;
 
-    public WorkersPanel() {
-        this.setBounds(700, 0, 500, 800);
+    public WorkersInactive() {
+        this.setBounds(0, 0, 500, 800);
         this.setBackground(new Color(0, 129, 155));
         this.setLayout(null);
         this.setRoundBottomRight(50);

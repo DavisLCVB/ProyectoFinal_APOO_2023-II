@@ -30,11 +30,11 @@ public abstract class FileManager {
         }
     }
 
-    public static void escribirArchivo(String nombreArchivo, String mensaje) {
+    public static void escribirArchivo(String nombreArchivo, String mensaje, boolean aniadir) {
         String nombreFullArchivo = ruta + nombreArchivo;
         File archivo = new File(nombreFullArchivo);
         try {
-            PrintWriter salida = new PrintWriter(new FileWriter(archivo, true));
+            PrintWriter salida = new PrintWriter(new FileWriter(archivo, aniadir));
             salida.println(mensaje);
             salida.close();
         } catch (FileNotFoundException e) {

@@ -11,7 +11,7 @@ import javax.swing.*;
  */
 public class LoginPanel extends JPanel {
 
-    private CompanyPanel companyPanel;
+    public CompanyPanel companyPanel;
     private LoginTitle loginTitle;
     public LoginForms loginForms;
 

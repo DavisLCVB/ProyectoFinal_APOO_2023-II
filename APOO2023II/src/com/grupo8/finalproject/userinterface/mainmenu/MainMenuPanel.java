@@ -3,6 +3,8 @@
  */
 package com.grupo8.finalproject.userinterface.mainmenu;
 
+import com.grupo8.finalproject.userinterface.mainmenu.workerspanel.WorkersPanel;
+import com.grupo8.finalproject.userinterface.mainmenu.workpanel.WorkPanel;
 import java.awt.Color;
 import javax.swing.*;
 

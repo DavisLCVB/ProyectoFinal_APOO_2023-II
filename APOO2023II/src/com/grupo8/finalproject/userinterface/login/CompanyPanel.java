@@ -17,7 +17,7 @@ import javax.swing.*;
 public class CompanyPanel extends JPanelRound {
 
     private JLabel lbEmpresa;
-    private JLabel lbGifEmpresa;
+    public JLabel lbGifEmpresa;
 
     public CompanyPanel() {
         this.setLayout(null);

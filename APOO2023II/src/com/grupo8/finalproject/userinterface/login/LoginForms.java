@@ -68,7 +68,7 @@ public class LoginForms extends JPanelGradient {
         tfUsuario.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent evt) {
-                usuarioClickeado(evt);
+                usuarioClickeado();
             }
         });
         this.add(tfUsuario);
@@ -94,7 +94,7 @@ public class LoginForms extends JPanelGradient {
         pfContrasenia.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent evt) {
-                passwordClickeado(evt);
+                passwordClickeado();
             }
         });
         this.add(pfContrasenia);
@@ -138,7 +138,7 @@ public class LoginForms extends JPanelGradient {
         this.add(lbErrorLogin);
     }
 
-    public void usuarioClickeado(MouseEvent evt) {
+    public void usuarioClickeado() {
         lbErrorLogin.setText("");
         if (tfUsuario.getText().equals("Usuario")) {
             tfUsuario.setText("");
@@ -150,7 +150,7 @@ public class LoginForms extends JPanelGradient {
         }
     }
 
-    public void passwordClickeado(MouseEvent evt) {
+    public void passwordClickeado() {
         lbErrorLogin.setText("");
         if (String.valueOf(pfContrasenia.getPassword()).equals("********")) {
             pfContrasenia.setText("");

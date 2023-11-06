@@ -6,11 +6,12 @@ package com.grupo8.finalproject.utilities;
 
 /**
  * @author Davis Cartagena
-*/
+ */
 import java.util.Random;
 
 //La clase es abstracta ya que así nos evitamos crear objetos cada que querramos crear un número aleatorio
 public abstract class Aleatoriedad {
+
     //Creamos un objeto de tipo Random, este es el que nos generará los números aleatorios
     //no se olviden de importar la librería java.util.Random
     //Lo declaramos estático para que esté asociada a la clase y tengamos que crear un objeto
@@ -20,6 +21,7 @@ public abstract class Aleatoriedad {
     //Esta variable será el límite en el que deseamos crear el número. También es estática por
     //las razones del anterior, nos evitamos crear objetos de esta clase
     private static int limite;
+    private static int limite_inf;
 
     //La clase no tiene constructor debido a que no habrán objetos de su tipo en nuestor programa
     //el único método al que accederemos será a los set, get, y el retornarNumeroAleatorio
@@ -31,6 +33,14 @@ public abstract class Aleatoriedad {
         Aleatoriedad.limite = limite;
     }
 
+    public static int getLimite_inf() {
+        return limite_inf;
+    }
+
+    public static void setLimite_inf(int limite_inf) {
+        Aleatoriedad.limite_inf = limite_inf;
+    }
+
     //La forma de llamar a los métodos estáticos es con el punto. En este caso, llamaremos a esta
     //función con la siguiente sintaxis: Aleatoriedad.retornarNumeroAleatorio()
     //Sin embargo asegurémonos de establecer el límite con el set antes de nada.
@@ -38,5 +48,16 @@ public abstract class Aleatoriedad {
         //nextInt es una función que retorna un entero con el rango especificado, en este caso de 0
         //a límite - 1. En notación: [0,limite)
         return random.nextInt(limite);
+    }
+
+    public static int retornarNumeroAleatorio(int limite) {
+        setLimite(limite);
+        return retornarNumeroAleatorio();
+    }
+
+    public static int retornarNumeroAleatorio(int limite_sup, int limite_inf) {
+        setLimite(limite_sup - limite_inf);
+        setLimite_inf(limite_inf);
+        return retornarNumeroAleatorio() + limite_inf;
     }
 }

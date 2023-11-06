@@ -24,6 +24,7 @@ public class MainWindow extends JFrame {
     public int coordY;
 
     public MainWindow() {
+        this.setTitle("BuildSphere App");
         this.setSize(1200, 800);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
