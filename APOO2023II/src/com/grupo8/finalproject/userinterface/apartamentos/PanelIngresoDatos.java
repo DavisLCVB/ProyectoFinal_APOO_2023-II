@@ -1,4 +1,4 @@
-package com.grupo8.finalproject.userinterface.apartments;
+package com.grupo8.finalproject.userinterface.apartamentos;
 
 import com.grupo8.finalproject.domain.obras.ConstruccionEdificioApartamentos;
 import javax.swing.*;
@@ -30,7 +30,7 @@ public class PanelIngresoDatos extends JPanel {
     protected JTextField campo_direccionObra;
 
     public JButton Aceptar;
-    public JButton Mostrar_Detalles;
+    public JButton Cancelar;
 
     public PanelIngresoDatos() {
         IniciarComponent();
@@ -97,22 +97,24 @@ public class PanelIngresoDatos extends JPanel {
         available_Distritos.setFont(mifuentepanel.deriveFont(Font.PLAIN, 12));
 
         Color micolorBoton = new Color(110, 190, 170);
-        Aceptar = new JButton("ACEPTAR");
+        Aceptar = new JButton("Aceptar");
         Aceptar.setBounds(45, 200, 150, 45);
         Aceptar.setBackground(micolorBoton);
         Aceptar.setForeground(Color.WHITE);
+        Aceptar.setBorder(new LineBorder(micolorBoton, 3, true));
         Aceptar.setFont(mifuentepanel.deriveFont(Font.PLAIN, 12));
         ImageIcon aceptar = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\gif\\aceptar.png");
         Aceptar.setIcon(aceptar);
 
         Color micolorBoton_2 = new Color(240, 30, 80);
-        Mostrar_Detalles = new JButton("xxxx");
-        Mostrar_Detalles.setBounds(205, 200, 200, 45);
-        Mostrar_Detalles.setBackground(micolorBoton_2);
-        Mostrar_Detalles.setForeground(Color.WHITE);
-        Mostrar_Detalles.setFont(mifuentepanel.deriveFont(Font.PLAIN, 12));
+        Cancelar = new JButton("Cancelar");
+        Cancelar.setBounds(205, 200, 150, 45);
+        Cancelar.setBackground(micolorBoton_2);
+        Cancelar.setForeground(Color.WHITE);
+        Cancelar.setBorder(new LineBorder(micolorBoton_2, 5, true));
+        Cancelar.setFont(mifuentepanel.deriveFont(Font.PLAIN, 12));
         ImageIcon mostrar = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\gif\\MostrarDetalles.png");
-        Mostrar_Detalles.setIcon(mostrar);
+        Cancelar.setIcon(mostrar);
 
         this.add(etiqueta_Numpisos);
         this.add(campo_Numpisos);
@@ -125,7 +127,7 @@ public class PanelIngresoDatos extends JPanel {
         this.add(etiqueta_distritos);
         this.add(available_Distritos);
         this.add(Aceptar);
-        this.add(Mostrar_Detalles);
+        this.add(Cancelar);
 
     }
 
@@ -137,7 +139,7 @@ public class PanelIngresoDatos extends JPanel {
         a.setUbicacionObra(campo_direccionObra.getText());
         a.SetDistrito(available_Distritos.getSelectedItem().toString());
 
-        a.setNombreObra("Construcción de Edificios por Departamento");
+        a.setNombreObra("Construcción de Edificios de Departamento");
         int m = a.CalcularComplejidad(Integer.parseInt(campo_Numpisos.getText()), Integer.parseInt(campo_Numhabitaciones.getText()));
         a.setComplejidad(m);
 

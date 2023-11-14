@@ -5,13 +5,11 @@ package com.grupo8.finalproject.domain.obras;
  */
 public interface AccionObras {
 
-    public void CalcularNro_obreros();
+    public void CalcularNroObreros();
 
-    public void CalcularNro_electricistas();
+    public void CalcularNroElectricistas();
 
-    public void CalcularNro_plomeros();
-
-    public void CalcularNro_carpinteros();
+    public void CalcularNroCarpinteros();
 
     public void EstimacionDeMateriales();
 

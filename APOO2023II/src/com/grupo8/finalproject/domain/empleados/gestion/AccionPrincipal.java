@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.grupo8.finalproject.domain.empleados.padres;
+package com.grupo8.finalproject.domain.empleados.gestion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author Jose Sernaque
  */
-public class AccionPrincipal {
+public class AccionPrincipal implements Serializable{
 
     private String nombre;
     
@@ -19,6 +20,11 @@ public class AccionPrincipal {
     public AccionPrincipal(String nombre) {
         this.nombre = nombre;
     }
+
+    public void setSubprocesos(ArrayList<String> subprocesos) {
+        this.subprocesos = subprocesos;
+    }
+    
     public String getNombre() {
         return nombre;
     }

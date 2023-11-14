@@ -1,4 +1,4 @@
-package com.grupo8.finalproject.userinterface.apartments;
+package com.grupo8.finalproject.userinterface.apartamentos;
 
 import components.JPanelRound;
 import java.awt.Color;//Librería para COLORES

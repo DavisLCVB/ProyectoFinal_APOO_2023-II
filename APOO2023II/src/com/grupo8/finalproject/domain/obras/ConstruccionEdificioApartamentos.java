@@ -1,13 +1,11 @@
 package com.grupo8.finalproject.domain.obras;
 
 import com.grupo8.finalproject.utilities.Aleatoriedad;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Random;
 
-/*
- * @author Brayan Goicochea
- */
-public class ConstruccionEdificioApartamentos extends Obra implements AccionObras {
+public class ConstruccionEdificioApartamentos extends Obra implements AccionObras, Serializable {
 
     /*Atributos que se llenarán por ventana*/
     protected int Nro_pisos;
@@ -60,7 +58,8 @@ public class ConstruccionEdificioApartamentos extends Obra implements AccionObra
         return Fecha_Culminacion_Obra;
     }
 
-    public void CalcularNro_obreros() {
+    @Override
+    public void CalcularNroObreros() {
         /*Se considera que el numero de obreros dependerá del area del terreno
         * ya que no se les puede distribuir por cantidad de pisos */
         if (Area_terreno > 0 && Area_terreno <= 90.0) {
@@ -76,7 +75,8 @@ public class ConstruccionEdificioApartamentos extends Obra implements AccionObra
         }
     }
 
-    public void CalcularNro_electricistas() {
+    @Override
+    public void CalcularNroElectricistas() {
         if (Area_terreno > 0 && Area_terreno <= 90.0) {
             NroElectricistas = 1;
         } else {
@@ -90,22 +90,19 @@ public class ConstruccionEdificioApartamentos extends Obra implements AccionObra
         }
     }
 
-    public void CalcularNro_plomeros() {
+    @Override
+    public void CalcularNroCarpinteros() {
         if (Area_terreno > 0 && Area_terreno <= 90.0) {
-            NroPlomeros = 1;
+            NroCarpinteros = 1;
         } else {
             if (Area_terreno > 90 && Area_terreno <= 150) {
-                NroPlomeros = 2;
+                NroCarpinteros = 2;
             } else {
                 if (Area_terreno > 150 && Area_terreno < 200) {
-                    NroPlomeros = 2;
+                    NroCarpinteros = 2;
                 }
             }
         }
-    }
-
-    @Override
-    public void CalcularNro_carpinteros() {
     }
 
     @Override
@@ -173,9 +170,9 @@ public class ConstruccionEdificioApartamentos extends Obra implements AccionObra
 
     @Override
     public void CalcularPresupuesto() {
-        CalcularNro_obreros();
-        CalcularNro_electricistas();
-        CalcularNro_plomeros();
+        CalcularNroObreros();
+        CalcularNroElectricistas();
+        CalcularNroCarpinteros();
         EstimacionDeMateriales();
 
         Presupuesto_materiales = NroLadrillos * 1.0 + Nrofierros * 45.0 + NroBolsascemento * 30.0 + NroKgpiedra * 6.0 + NroKgarena + 6.0 + Nrotubos_agua * 20.0 + Nrotubos_luz * 15.0 + NroPalos_madera * 5.0;
@@ -271,5 +268,15 @@ public class ConstruccionEdificioApartamentos extends Obra implements AccionObra
 
     public int getNroPalos_madera() {
         return NroPalos_madera;
+    }
+
+    @Override
+    public String toString() {
+        String CEAstr = super.toString();
+        CEAstr += "Nro de Pisos:\t\t" + this.Nro_pisos + "\n";
+        CEAstr += "Nro de Habitaciones:\t" + this.Nro_habitaciones + "\n";
+        CEAstr += "Área del Terreno:\t" + this.Area_terreno + "\n";
+        CEAstr += "Distrito:\t\t" + this.Distrito + "\n";
+        return CEAstr;
     }
 }

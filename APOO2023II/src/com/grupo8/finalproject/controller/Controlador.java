@@ -4,25 +4,28 @@
  */
 package com.grupo8.finalproject.controller;
 
-import com.grupo8.finalproject.domain.empleados.padres.Supervisor;
+import com.grupo8.finalproject.domain.empleados.gestion.AccionPrincipal;
+import com.grupo8.finalproject.domain.empleados.gestion.GestorSupervisor;
+import com.grupo8.finalproject.domain.empleados.gestion.Supervisor;
 import com.grupo8.finalproject.domain.empleados.trabajadores.*;
-import com.grupo8.finalproject.domain.obras.ConstruccionEdificioApartamentos;
 import com.grupo8.finalproject.domain.obras.Obra;
 import com.grupo8.finalproject.userinterface.MainWindow;
+import com.grupo8.finalproject.userinterface.OptionSalida;
 import com.grupo8.finalproject.userinterface.confirmlogin.FrameOscuro;
 import com.grupo8.finalproject.userinterface.confirmlogin.VentanaConfirmacion;
+import com.grupo8.finalproject.userinterface.mainmenu.workerspanel.WorkersActive;
 import com.grupo8.finalproject.utilities.FileManager;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.Timer;
+import javax.swing.*;
 
 /**
  * @author Davis Cartagena
@@ -32,9 +35,14 @@ public class Controlador {
     private MainWindow userInterface;
     private VentanaConfirmacion ventanaConfirmacion;
     private ControladorDatosObras coObras;
-    private Electricista electricista;
-    private Pintor pintor;
-    private Obrero obrero;
+    private Electricista electricista = new Electricista();
+    private Carpintero carpintero = new Carpintero();
+    private Obrero obrero = new Obrero();
+    public static ArrayList<Boolean> terminado = new ArrayList<>();
+    private TrabajadorEjecutable ejecElectricista;
+    private TrabajadorEjecutable ejecObrero;
+    private TrabajadorEjecutable ejecCarpintero;
+    private OptionSalida salir;
 
     public Controlador() {
     }
@@ -43,6 +51,17 @@ public class Controlador {
         this.ventanaConfirmacion = ventanaConfirmacion;
         this.userInterface = userInterface;
         this.coObras = coObras;
+        this.coObras.obraInconclusa = false;
+        this.salir = new OptionSalida() {
+            @Override
+            public void ejecutar() {
+                confirmarSalida();
+            }
+        };
+        cargarArchivos();
+        terminado.add(false);
+        terminado.add(false);
+        terminado.add(false);
         this.userInterface.loginPanel.loginForms.jprLogin.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent evt) {
@@ -188,12 +207,10 @@ public class Controlador {
                 iniciarObra(coObras.obraEnCurso);
             }
         });
-
+        Electricista.setMostrarAcciones(WorkersActive.areaElectricista);
+        Obrero.setMostrarAcciones(WorkersActive.areaObrero);
+        Carpintero.setMostrarAcciones(WorkersActive.areaCarpintero);
         this.userInterface.loginPanel.loginForms.usuarioClickeado();
-    }
-
-    public Controlador(MainWindow mainW, VentanaConfirmacion ventanaConfirmacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void panelLoginEntrar() {
@@ -205,8 +222,7 @@ public class Controlador {
     }
 
     public void panelLoginClick() {
-        Supervisor supervisor = new Supervisor();
-        if (!validarLogin(supervisor)) {
+        if (!validarLogin()) {
             this.userInterface.loginPanel.loginForms.lbErrorLogin.setText("Usuario o contraseña incorrectos");
             return;
         }
@@ -221,52 +237,42 @@ public class Controlador {
         });
         this.ventanaConfirmacion.setLocationRelativeTo(fo);
         this.ventanaConfirmacion.setVisible(true);
-        Timer timer = new Timer(3000, actionEvent -> {
+        Timer timer = new Timer(2500, actionEvent -> {
             fo.dispose();
             this.ventanaConfirmacion.dispose();
             this.userInterface.loginPanel.setVisible(false);
-            asignarSupervisor(supervisor);
             this.userInterface.add(this.userInterface.mainMenuPanel);
             this.userInterface.statusBar.lbStatus.setText(">> Main Menu");
             this.userInterface.mainMenuPanel.workPanel.noObra.prSeleccionarObra.requestFocus();
+            if (this.coObras.obraInconclusa) {
+                iniciarObra(this.coObras.obraEnCurso);
+            }
+
         });
         timer.setRepeats(false);
         timer.start();
     }
 
-    public boolean validarLogin(Supervisor sup) {
+    public boolean validarLogin() {
         if (this.userInterface.loginPanel.loginForms.tfUsuario.getText().isEmpty() || this.userInterface.loginPanel.loginForms.tfUsuario.getText().equals("Usuario")) {
             return false;
         }
         if (String.valueOf(this.userInterface.loginPanel.loginForms.pfContrasenia.getPassword()).isEmpty() || String.valueOf(this.userInterface.loginPanel.loginForms.pfContrasenia.getPassword()).equals(("********"))) {
             return false;
         }
-        boolean exists = false;
-        ArrayList<String> usuarios = new ArrayList<>();
-        FileManager.leerArchivo("Supervisores.txt", usuarios);
-        for (int i = 0; i < usuarios.size(); i += 3) {
-            if (!this.userInterface.loginPanel.loginForms.tfUsuario.getText().equals(usuarios.get(i))) {
-                continue;
-            }
-            if (!String.valueOf(this.userInterface.loginPanel.loginForms.pfContrasenia.getPassword()).equals(usuarios.get(i + 2))) {
-                continue;
-            }
-            sup.setNombre(usuarios.get(i));
-            sup.setApellido(usuarios.get(i + 1));
-
-            exists = true;
+        if (GestorSupervisor.buscarSupervisor(this.userInterface.loginPanel.loginForms.tfUsuario.getText().trim(), String.valueOf(this.userInterface.loginPanel.loginForms.pfContrasenia.getPassword()))) {
+            asignarSupervisor(GestorSupervisor.getSupervisorActual());
+            return true;
         }
-        if (!exists) {
-            return false;
-        }
-        return true;
+        return false;
     }
 
     public void asignarSupervisor(Supervisor supervisor) {
-
         this.userInterface.mainMenuPanel.supervisorPanel.lbNombre.setText("Nombre: " + supervisor.getNombre());
         this.userInterface.mainMenuPanel.supervisorPanel.lbApellidos.setText("Apellido: " + supervisor.getApellido());
-        this.userInterface.mainMenuPanel.supervisorPanel.lbIDSupervisor.setText("ID Sesión: " + supervisor.getiDSupervisor());
+        this.userInterface.mainMenuPanel.supervisorPanel.lbIDSupervisor.setText("ID Sesión: " + supervisor.getiDSesion());
+        //150
+        this.userInterface.mainMenuPanel.supervisorPanel.lbImagenSupervisor.setIcon(new ImageIcon(supervisor.getIcono().getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
     }
 
     public void statusBarPresionado(MouseEvent evt) {
@@ -289,9 +295,7 @@ public class Controlador {
     }
 
     public void salirPrograma(MouseEvent evt) {
-        this.coObras.apartmentsGUI.dispose();
-        this.coObras.fo.dispose();
-        System.exit(0);
+        salir.generarOptionPane();
     }
 
     public void entrarSeleccionarObra() {
@@ -305,8 +309,18 @@ public class Controlador {
     public void seleccionarObra() {
         this.userInterface.mainMenuPanel.workPanel.noObra.prSeleccionarObra.requestFocus();
         String opcion = this.userInterface.mainMenuPanel.workPanel.noObra.cbMenuObras.getSelectedItem().toString();
-        if (opcion.equals("Construcción de Apartamentos")) {
-            visibleVentanaApartamentos();
+        switch (opcion) {
+            case "Construcción de Apartamentos":
+                visibleVentanaApartamentos();
+                break;
+            case "Reparación de Tejados":
+                visibleVentanaTejados();
+                break;
+            case "Renovación de Casa":
+                visibleRenovacionCasa();
+                break;
+            default:
+                break;
         }
     }
 
@@ -317,61 +331,248 @@ public class Controlador {
         this.coObras.apartmentSelected = true;
     }
 
+    public void visibleVentanaTejados() {
+        this.coObras.fo.setLocationRelativeTo(userInterface);
+        this.coObras.fo.setVisible(true);
+        this.coObras.tejadoGUI.setVisible(true);
+        this.coObras.roofSelected = true;
+    }
+
+    private void visibleRenovacionCasa() {
+        this.coObras.fo.setLocationRelativeTo(userInterface);
+        this.coObras.fo.setVisible(true);
+        this.coObras.renovacionGUI.setVisible(true);
+        this.coObras.renovSelected = true;
+    }
+
     public void iniciarObra(Obra obra) {
+        if (!this.coObras.obraInconclusa) {
+            llenarTrabajadores();
+        }
         this.userInterface.mainMenuPanel.workersPanel.wInactive.setVisible(false);
         this.userInterface.mainMenuPanel.workersPanel.wActive.setVisible(true);
-        this.userInterface.setComponentZOrder(this.userInterface.statusBar, 0);
-        llenarTrabajadores();
+        this.userInterface.mainMenuPanel.workPanel.noObra.setVisible(false);
+        this.userInterface.mainMenuPanel.workPanel.yepObra.setVisible(true);
+        this.userInterface.mainMenuPanel.workPanel.yepObra.taInformacionObra.append(this.coObras.obraEnCurso.toString());
+        this.userInterface.mainMenuPanel.workPanel.yepObra.lbTituloObra.setText(this.coObras.obraEnCurso.getNombreObra());
+        this.userInterface.mainMenuPanel.workPanel.yepObra.prResetObra.setVisible(false);
+        this.coObras.obraInconclusa = true;
         iniciarTrabajadores();
     }
 
     public void iniciarTrabajadores() {
-        TrabajadorEjecutable ejecutableElectricista = new TrabajadorEjecutable(
-                electricista.getArrayTareas(), this.userInterface.mainMenuPanel.workersPanel.wActive.lbTareaPElectricista,
-                this.userInterface.mainMenuPanel.workersPanel.wActive.lbTareaSElectricista
-        );
-        TrabajadorEjecutable ejecutablePintor = new TrabajadorEjecutable(
-                pintor.getArrayTareas(), this.userInterface.mainMenuPanel.workersPanel.wActive.lbTareaPPintor,
-                this.userInterface.mainMenuPanel.workersPanel.wActive.lbTareaSPintor
-        );
-        TrabajadorEjecutable ejecutableObrero = new TrabajadorEjecutable(
-                obrero.getArrayTareas(), this.userInterface.mainMenuPanel.workersPanel.wActive.lbTareaPObrero,
-                this.userInterface.mainMenuPanel.workersPanel.wActive.lbTareaSObrero
-        );
-//        TrabajadorEjecutable ejecutablePlomero = new TrabajadorEjecutable(
-//                electricista.getArrayTareas(), this.userInterface.mainMenuPanel.workersPanel.wActive.lbTareaPPlomero,
-//                this.userInterface.mainMenuPanel.workersPanel.wActive.lbTareaSPlomero
-//        );
-        Thread hiloElectricista = new Thread(ejecutableElectricista);
-        Thread hiloObrero = new Thread(ejecutableObrero);
-        Thread hiloPintor = new Thread(ejecutablePintor);
-//        Thread hiloPlomero = new Thread(ejecutablePlomero);
+
+        terminado.set(0, false);
+        terminado.set(1, false);
+        terminado.set(2, false);
+        cargarEjecutables();
+
+        Thread hiloElectricista = new Thread(ejecElectricista);
+        Thread hiloObrero = new Thread(ejecObrero);
+        Thread hiloCarpintero = new Thread(ejecCarpintero);
 
         hiloElectricista.start();
         hiloObrero.start();
-        hiloPintor.start();
-//           hiloPlomero.start();
+        hiloCarpintero.start();
+
         try {
             hiloElectricista.join();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
             hiloObrero.join();
+            hiloCarpintero.join();
         } catch (InterruptedException ex) {
-            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            hiloPintor.join();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace(System.out);
         }
     }
 
     public void llenarTrabajadores() {
         electricista = new Electricista(this.coObras.obraEnCurso.getNroElectricistas());
-        pintor = new Pintor(this.coObras.obraEnCurso.getNroPintores());
+        carpintero = new Carpintero(this.coObras.obraEnCurso.getNroCarpinteros());
         obrero = new Obrero(this.coObras.obraEnCurso.getNroObreros());
-        //Plomero plomero = new Plomero(this.coObras.obraEnCurso.getNroPlomeros());
+    }
+
+    private void cargarArchivos() {
+        GestorSupervisor.llenarSupervisores();
+        cargarObraInconclusa();
+    }
+
+    private void finObra() {
+        if (terminado.get(0) && terminado.get(1) && terminado.get(2)) {
+            habilitarBotonReset();
+            this.coObras.obraInconclusa = false;
+            eliminarResiduos();
+        }
+    }
+
+    private void habilitarBotonReset() {
+        System.out.println("Obra Terminada");
+        this.userInterface.mainMenuPanel.workPanel.yepObra.prResetObra.setVisible(true);
+        this.userInterface.mainMenuPanel.workPanel.yepObra.prResetObra.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                entrarResetObra();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                salirResetObra();
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                resetPaneles();
+            }
+        });
+    }
+
+    private void entrarResetObra() {
+        this.userInterface.mainMenuPanel.workPanel.yepObra.prResetObra.setBackground(new Color(111, 112, 112));
+    }
+
+    private void salirResetObra() {
+        this.userInterface.mainMenuPanel.workPanel.yepObra.prResetObra.setBackground(Color.BLACK);
+    }
+
+    private void resetPaneles() {
+        this.userInterface.mainMenuPanel.workPanel.yepObra.setVisible(false);
+        this.userInterface.mainMenuPanel.workPanel.yepObra.taInformacionObra.setText("");
+        this.userInterface.mainMenuPanel.workPanel.noObra.prIniciarObra.setVisible(false);
+        this.userInterface.mainMenuPanel.workPanel.noObra.setVisible(true);
+
+        this.userInterface.mainMenuPanel.workersPanel.wActive.setVisible(false);
+        this.userInterface.mainMenuPanel.workersPanel.wInactive.setVisible(true);
+        Electricista.mostrarAcciones.setText("");
+        Obrero.mostrarAcciones.setText("");
+        Carpintero.mostrarAcciones.setText("");
+    }
+
+    private void guardarInstanciasObra() {
+        try {
+            FileManager.escribirArchivo("obrasInconclusas.dat", this.coObras.obraEnCurso);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+
+    private void guardarDatosTrabajadores() {
+        ArrayList<AccionPrincipal> accElectricista = this.ejecElectricista.getAcciones();
+        ArrayList<AccionPrincipal> accObrero = this.ejecObrero.getAcciones();
+        ArrayList<AccionPrincipal> accCarpin = this.ejecCarpintero.getAcciones();
+
+        try {
+            FileManager.escribirArchivo("electricista.dat", accElectricista);
+            FileManager.escribirArchivo("Obrero.dat", accObrero);
+            FileManager.escribirArchivo("carpintero.dat", accCarpin);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+
+    private void cargarObraInconclusa() {
+        try {
+            this.coObras.obraEnCurso = (Obra) FileManager.leerArchivo("obrasInconclusas.dat");
+            this.coObras.obraInconclusa = true;
+            System.out.println(this.coObras.obraEnCurso);
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Todo en orden");
+        }
+    }
+
+    private void cargarTrabajosInconclusos() {
+        try {
+            ArrayList<AccionPrincipal> accElectricista = (ArrayList<AccionPrincipal>) FileManager.leerArchivo("electricista.dat");
+            ArrayList<AccionPrincipal> accObrero = (ArrayList<AccionPrincipal>) FileManager.leerArchivo("obrero.dat");
+            ArrayList<AccionPrincipal> accCarpintero = (ArrayList<AccionPrincipal>) FileManager.leerArchivo("carpintero.dat");
+            this.ejecElectricista.setAcciones(accElectricista);
+            this.ejecObrero.setAcciones(accObrero);
+            this.ejecCarpintero.setAcciones(accCarpintero);
+            System.out.println("Se encontraron tareas inconclusas");
+        } catch (IOException | ClassNotFoundException ex) {
+            System.out.println("No hay tareas inconclusas");
+        }
+    }
+
+    private void crearEjecutables() {
+        ejecElectricista = new TrabajadorEjecutable(this.electricista.getArrayTareas(), "Electricista") {
+            @Override
+            public void run() {
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                    @Override
+                    protected Void doInBackground() {
+                        mostrarAccionesTrabajador();
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        Controlador.terminado.set(0, Boolean.TRUE);
+                        finObra();
+                    }
+
+                };
+                worker.execute();
+            }
+        };
+        ejecObrero = new TrabajadorEjecutable(this.obrero.getArrayTareas(), "Obrero") {
+            @Override
+            public void run() {
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                    @Override
+                    protected Void doInBackground() {
+                        mostrarAccionesTrabajador();
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        Controlador.terminado.set(1, Boolean.TRUE);
+                        finObra();
+                    }
+
+                };
+                worker.execute();
+            }
+        };
+        ejecCarpintero = new TrabajadorEjecutable(this.carpintero.getArrayTareas(), "Carpintero") {
+            @Override
+            public void run() {
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                    @Override
+                    protected Void doInBackground() {
+                        mostrarAccionesTrabajador();
+                        return null;
+                    }
+
+                    @Override
+                    protected void done() {
+                        Controlador.terminado.set(2, Boolean.TRUE);
+                        finObra();
+                    }
+
+                };
+                worker.execute();
+            }
+        };
+    }
+
+    private void cargarEjecutables() {
+        crearEjecutables();
+        cargarTrabajosInconclusos();
+    }
+
+    private void eliminarResiduos() {
+        FileManager.eliminarArchivo("Obrero.dat");
+        FileManager.eliminarArchivo("carpintero.dat");
+        FileManager.eliminarArchivo("electricista.dat");
+        FileManager.eliminarArchivo("obrasInconclusas.dat");
+    }
+
+    private void confirmarSalida() {
+        this.coObras.apartmentsGUI.dispose();
+        this.coObras.fo.dispose();
+        if (this.coObras.obraInconclusa) {
+            guardarInstanciasObra();
+            guardarDatosTrabajadores();
+        }
+        System.exit(0);
     }
 }

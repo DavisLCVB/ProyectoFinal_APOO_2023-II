@@ -3,6 +3,7 @@
  */
 package com.grupo8.finalproject.domain.obras;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -10,7 +11,7 @@ import java.util.*;
 /**
  * @author Davis Cartagena
  */
-public class Obra {
+public class Obra implements Serializable{
 
     protected String nombreObra;
     protected String ubicacionObra;
@@ -23,7 +24,7 @@ public class Obra {
     private static int indObra;
     protected int NroObreros = 0;
     protected int NroElectricistas = 0;
-    protected int NroPintores = 0;
+    protected int NroCarpinteros = 0;
     protected int NroPlomeros = 0;
 
     public Obra() {
@@ -113,15 +114,14 @@ public class Obra {
         return NroElectricistas;
     }
 
-    public int getNroPintores() {
-        return NroPintores;
+    public int getNroCarpinteros() {
+        return NroCarpinteros;
     }
 
     public int getNroPlomeros() {
         return NroPlomeros;
     }
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -179,15 +179,13 @@ public class Obra {
     public String toString() {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String obra = "";
-        obra += "\t.:Obra:.\n";
-        obra += "Nombre de la obra: " + this.nombreObra + "\n";
-        obra += "Ubicación de la obra" + this.ubicacionObra + "\n";
-        obra += "Fecha de Inicio: " + this.fechaInicio.format(formato) + "\n";
-        obra += "Fecha de Fin prevista:  " + this.fechaFin.format(formato) + "\n";
-        obra += "ID de Obra: " + this.iDObra + "\n";
-        obra += "Presupuesto: " + this.presupuesto + "\n";
-        obra += "Velocidad de la obra: " + this.velocidadObra + "\n";
-        obra += "Complejidad: ";
+        obra += "Ubicación de la obra:\t" + this.ubicacionObra + "\n";
+        obra += "Fecha de Inicio:\t\t" + this.fechaInicio.format(formato) + "\n";
+        obra += "Fecha de Fin prevista:\t" + this.fechaFin.format(formato) + "\n";
+        obra += "ID de Obra:\t\t" + this.iDObra + "\n";
+        obra += "Presupuesto:\t\t" + this.presupuesto + "\n";
+        obra += "Velocidad de la obra:\t" + this.velocidadObra + "\n";
+        obra += "Complejidad:\t\t";
         switch (this.complejidad) {
             case 0:
                 obra += "Baja\n";
@@ -199,6 +197,7 @@ public class Obra {
                 obra += "Alta\n";
                 break;
             default:
+                obra += "Desconocida\n";
                 break;
         }
         return obra;

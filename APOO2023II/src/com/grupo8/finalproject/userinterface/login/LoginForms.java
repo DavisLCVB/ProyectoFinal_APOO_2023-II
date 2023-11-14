@@ -23,7 +23,7 @@ import javax.swing.border.LineBorder;
  * @author leocv
  */
 public class LoginForms extends JPanelGradient {
-
+    
     private JLabel lbUsuario;
     private JLabel lbContrasenia;
     public JTextField tfUsuario;
@@ -34,7 +34,7 @@ public class LoginForms extends JPanelGradient {
     public JLabel btnLogin;
     public JPanelRound jprLogin;
     public JLabel lbErrorLogin;
-
+    
     public LoginForms() {
         this.setBounds(780, 180, 420, 620);
         this.setGradientStart(new Color(0, 129, 155));
@@ -43,7 +43,7 @@ public class LoginForms extends JPanelGradient {
         this.setRoundBottomRight(50);
         initComponents();
     }
-
+    
     public void initComponents() {
         Font custom = new Font("Arial", Font.PLAIN, 15);
         try {
@@ -52,13 +52,13 @@ public class LoginForms extends JPanelGradient {
         } catch (FontFormatException | IOException ex) {
             ex.printStackTrace(System.out);
         }
-
+        
         lbUsuario = new JLabel("Ingrese su nombre de usuario:");
         lbUsuario.setBounds(20, 50, 400, 40);
         lbUsuario.setForeground(Color.white);
         lbUsuario.setFont(custom);
         this.add(lbUsuario);
-
+        
         tfUsuario = new JTextField();
         tfUsuario.setText("Usuario");
         tfUsuario.setForeground(Color.GRAY);
@@ -72,19 +72,19 @@ public class LoginForms extends JPanelGradient {
             }
         });
         this.add(tfUsuario);
-
+        
         sUsuario = new JSeparator();
         sUsuario.setBounds(20, 140, 380, 3);
         sUsuario.setBackground(Color.BLACK);
         sUsuario.setBorder(new LineBorder(Color.BLACK, 5, false));
         this.add(sUsuario);
-
+        
         lbContrasenia = new JLabel("Ingrese su contraseña:");
         lbContrasenia.setBounds(20, 150, 400, 40);
         lbContrasenia.setForeground(Color.WHITE);
         lbContrasenia.setFont(custom);
         this.add(lbContrasenia);
-
+        
         pfContrasenia = new JPasswordField();
         pfContrasenia.setBounds(20, 200, 380, 40);
         pfContrasenia.setForeground(Color.GRAY);
@@ -98,23 +98,23 @@ public class LoginForms extends JPanelGradient {
             }
         });
         this.add(pfContrasenia);
-
+        
         sContrasenia = new JSeparator();
         sContrasenia.setBounds(20, 240, 380, 3);
         sContrasenia.setBackground(Color.BLACK);
         sContrasenia.setBorder(new LineBorder(Color.BLACK, 5, false));
         this.add(sContrasenia);
-
+        
         ImageIcon imagenUsuario = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\images\\usuario.png");
         Image scaled = imagenUsuario.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         imagenUsuario = new ImageIcon(scaled);
-
+        
         lbImagenUsuario = new JLabel();
         lbImagenUsuario.setIcon(imagenUsuario);
         lbImagenUsuario.setBounds(0, 360, 420, 200);
         lbImagenUsuario.setHorizontalAlignment(JLabel.CENTER);
         this.add(lbImagenUsuario);
-
+        
         int round = 25;
         jprLogin = new JPanelRound();
         jprLogin.setBounds(160, 270, 100, 40);
@@ -123,13 +123,13 @@ public class LoginForms extends JPanelGradient {
         jprLogin.setRoundTopLeft(round);
         jprLogin.setRoundTopRight(round);
         jprLogin.setBackground(new Color(37, 35, 39));
-
+        
         btnLogin = new JLabel("Entrar");
         btnLogin.setForeground(Color.WHITE);
         btnLogin.setFont(custom.deriveFont(20.0f));
         jprLogin.add(btnLogin);
         this.add(jprLogin);
-
+        
         lbErrorLogin = new JLabel();
         lbErrorLogin.setBounds(0, 320, 420, 20);
         lbErrorLogin.setForeground(Color.red);
@@ -137,7 +137,7 @@ public class LoginForms extends JPanelGradient {
         lbErrorLogin.setHorizontalAlignment(JLabel.CENTER);
         this.add(lbErrorLogin);
     }
-
+    
     public void usuarioClickeado() {
         lbErrorLogin.setText("");
         if (tfUsuario.getText().equals("Usuario")) {
@@ -149,7 +149,7 @@ public class LoginForms extends JPanelGradient {
             pfContrasenia.setForeground(Color.GRAY);
         }
     }
-
+    
     public void passwordClickeado() {
         lbErrorLogin.setText("");
         if (String.valueOf(pfContrasenia.getPassword()).equals("********")) {

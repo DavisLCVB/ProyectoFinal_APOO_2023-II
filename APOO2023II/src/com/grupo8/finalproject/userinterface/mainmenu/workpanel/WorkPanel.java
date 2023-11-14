@@ -14,18 +14,24 @@ import javax.swing.*;
  * @author Davis Cartagena
  */
 public class WorkPanel extends JPanel {
-    public NoObraPanel noObra;
+
+    public WorkInactive noObra;
+    public WorkActive yepObra;
 
     public WorkPanel() {
         this.setBounds(200, 0, 500, 800);
-        this.setBackground(new Color(0, 0, 0, 0));
+        this.setBackground(new Color(37, 35, 39, 0));
         this.setLayout(null);
         initComponents();
     }
 
     public void initComponents() {
-        noObra = new NoObraPanel();
+        noObra = new WorkInactive();
         this.add(noObra);
+
+        yepObra = new WorkActive();
+        this.add(yepObra);
+        yepObra.setVisible(false);
     }
 
 }

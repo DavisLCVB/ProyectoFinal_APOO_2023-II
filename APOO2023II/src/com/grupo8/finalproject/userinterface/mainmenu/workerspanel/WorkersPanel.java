@@ -16,8 +16,10 @@ public class WorkersPanel extends JPanelRound {
 
     public WorkersPanel() {
         this.setBounds(700, 0, 500, 800);
-        this.setBackground(new Color(0, 0, 0, 0));
+        this.setBackground(new Color(0, 129, 155));
         this.setLayout(null);
+        this.setRoundBottomRight(50);
+        this.setRoundTopRight(50);
         initComponents();
     }
 

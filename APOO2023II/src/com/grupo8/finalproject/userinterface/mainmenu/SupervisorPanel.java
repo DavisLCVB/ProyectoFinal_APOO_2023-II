@@ -21,7 +21,7 @@ public class SupervisorPanel extends JPanelRound {
     public JLabel lbNombre;
     public JLabel lbApellidos;
     public JLabel lbIDSupervisor;
-    private JLabel lbImagenSupervisor;
+    public JLabel lbImagenSupervisor;
 
     public SupervisorPanel() {
         this.setLayout(null);

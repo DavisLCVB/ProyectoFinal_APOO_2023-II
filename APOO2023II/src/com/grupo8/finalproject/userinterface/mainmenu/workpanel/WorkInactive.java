@@ -15,7 +15,7 @@ import javax.swing.border.LineBorder;
 /**
  * @author Davis Cartagena
  */
-public class NoObraPanel extends JPanel {
+public class WorkInactive extends JPanel {
 
     private JLabel lbNoObra;
     private JLabel lbImagenNoObra;
@@ -25,8 +25,8 @@ public class NoObraPanel extends JPanel {
     public JPanelRound prIniciarObra;
     public JLabel lbIniciarObra;
 
-    public NoObraPanel() {
-        this.setBounds(0, 0, 500, 800);
+    public WorkInactive() {
+        this.setBounds(0, 0, 500, 799);
         this.setBackground(new Color(37, 35, 39));
         this.setLayout(null);
         initComponents();

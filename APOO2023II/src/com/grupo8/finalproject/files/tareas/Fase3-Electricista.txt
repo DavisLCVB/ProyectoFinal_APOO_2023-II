@@ -1,0 +1,11 @@
+Realizar pruebas de voltaje.
+Probar interruptores y dispositivos.
+Verificar operatividad del sistema.
+Inspeccionar en busca de fallos.
+Documentar y registrar pruebas.
+Capacitar en uso y mantenimiento.
+Finalizar y entregar documentación.
+Elaborar informe del proyecto.
+Poner en marcha sistema.
+Completar pruebas de carga.
+Fin-Archivo

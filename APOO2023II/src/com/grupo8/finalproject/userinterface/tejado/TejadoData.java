@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.grupo8.finalproject.userinterface.apartments;
+package com.grupo8.finalproject.userinterface.tejado;
 
+import com.grupo8.finalproject.userinterface.apartamentos.PanelBorde;
 import java.awt.Color;
 import javax.swing.*;
 
-/**
- *
- * @author leocv
- */
-public class ApartmentsData extends JFrame {
+public class TejadoData extends JFrame {
 
     public PanelFondo fondo_ventana;
     public PanelTituloA Letras_iniciales;
@@ -20,7 +12,7 @@ public class ApartmentsData extends JFrame {
     public PanelIngresoDatos panel_ingresoDatos;
     public PanelBorde pb;
 
-    public ApartmentsData() {
+    public TejadoData() {
         this.setLayout(null);
         this.setUndecorated(true);
         this.setBackground(new Color(0, 0, 0, 0));
@@ -35,7 +27,7 @@ public class ApartmentsData extends JFrame {
         fondo_ventana = new PanelFondo();
         fondo_ventana.setBounds(5, 5, 775, 529);//width=ancho height=largo
         this.add(fondo_ventana);
-        
+
         pb = new PanelBorde();
         this.add(pb);
 
