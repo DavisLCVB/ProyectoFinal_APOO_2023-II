@@ -166,15 +166,15 @@ public class PanelIngresoDatos extends JPanel {
         Aceptar.setBounds(45, 200, 150, 45);
         Aceptar.setBackground(micolorBoton);
         Aceptar.setForeground(Color.WHITE);
-        ImageIcon aceptar = new ImageIcon("C:/Users/Usuario/Documents/TAREAS/POO/Proyecto_POO/out/production/Proyecto_POO/BrayanPart/aceptar.png");
+        ImageIcon aceptar = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\gif\\aceptar.png");
         Aceptar.setIcon(aceptar);
 
         Color micolorBoton_2 = new Color(240, 30, 80);
-        Cancelar = new JButton("xxxx");
+        Cancelar = new JButton("Cancelar");
         Cancelar.setBounds(205, 200, 200, 45);
         Cancelar.setBackground(micolorBoton_2);
         Cancelar.setForeground(Color.WHITE);
-        ImageIcon mostrar = new ImageIcon("C:/Users/Usuario/Documents/TAREAS/POO/Proyecto_POO/out/production/Proyecto_POO/BrayanPart/MostrarDetalles.png");
+        ImageIcon mostrar = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\gif\\MostrarDetalles.png");
         Cancelar.setIcon(mostrar);
 
         this.add(etiqueta_sectorObra);

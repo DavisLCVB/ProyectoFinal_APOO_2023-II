@@ -47,15 +47,24 @@ public class WorkActive extends JPanel {
             ex.printStackTrace(System.out);
         }
         custom2 = custom2.deriveFont(Font.PLAIN, 15);
-
+        
+        JPanelRound jprInformacionObra = new JPanelRound();
+        jprInformacionObra.setBounds(50, 200, 400, 400);
+        jprInformacionObra.setBackground(Color.BLACK);
+        jprInformacionObra.setRoundBottomLeft(25);
+        jprInformacionObra.setRoundBottomRight(25);
+        jprInformacionObra.setRoundTopLeft(25);
+        jprInformacionObra.setRoundTopRight(25);
+        
         taInformacionObra = new JTextArea();
-        taInformacionObra.setBounds(50, 200, 400, 450);
+        taInformacionObra.setBounds(0, 0, 400, 400);
         taInformacionObra.setFont(custom2);
         taInformacionObra.setBackground(Color.BLACK);
         taInformacionObra.setForeground(Color.WHITE);
         taInformacionObra.setEditable(false);
         taInformacionObra.setBorder(new LineBorder(Color.BLACK, 10, true));
-        this.add(taInformacionObra);
+        jprInformacionObra.add(taInformacionObra);
+        this.add(jprInformacionObra);  
 
         int round = 25;
         prResetObra = new JPanelRound();

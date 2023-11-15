@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 public class GestorTrabajador {
 
-    public static ArrayList<AccionPrincipal> llenarTareas(String tipo) {
+    public static ArrayList<AccionPrincipal> llenarTareas(String tipo, int cantidadSubtareas) {
 
         ArrayList<AccionPrincipal> tareas = new ArrayList<>();
         ArrayList<String> archivos = new ArrayList<>();
@@ -48,20 +48,7 @@ public class GestorTrabajador {
         }
 
         for (int i = 0; i < 3; i++) {
-            int cantidadSubtareas = -1;
-            boolean pass;
-            do {
-                pass = false;
-                cantidadSubtareas = -1;
-                String respuesta = JOptionPane.showInputDialog(null, "Ingrese la cantidad de subtareas para " + fases.get(i), "Ingreso Datos", JOptionPane.INFORMATION_MESSAGE);
-                try {
-                    cantidadSubtareas = Integer.parseInt(respuesta);
-                    pass = true;
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Número no válido", "Ingreso Datos", JOptionPane.ERROR_MESSAGE);
-                }
-            } while (!pass);
-
+            
             ArrayList<String> contenedor = new ArrayList<>();
             try {
                 FileManager.leerArchivo(archivos.get(i), contenedor);

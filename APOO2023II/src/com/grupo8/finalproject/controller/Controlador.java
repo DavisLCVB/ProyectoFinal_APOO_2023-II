@@ -11,6 +11,7 @@ import com.grupo8.finalproject.domain.empleados.trabajadores.*;
 import com.grupo8.finalproject.domain.obras.Obra;
 import com.grupo8.finalproject.userinterface.MainWindow;
 import com.grupo8.finalproject.userinterface.OptionSalida;
+import com.grupo8.finalproject.userinterface.actionworkers.VentanaObreros;
 import com.grupo8.finalproject.userinterface.confirmlogin.FrameOscuro;
 import com.grupo8.finalproject.userinterface.confirmlogin.VentanaConfirmacion;
 import com.grupo8.finalproject.userinterface.mainmenu.workerspanel.WorkersActive;
@@ -34,6 +35,7 @@ public class Controlador {
 
     private MainWindow userInterface;
     private VentanaConfirmacion ventanaConfirmacion;
+    private VentanaObreros tareaObreros;
     private ControladorDatosObras coObras;
     private Electricista electricista = new Electricista();
     private Carpintero carpintero = new Carpintero();
@@ -52,6 +54,7 @@ public class Controlador {
         this.userInterface = userInterface;
         this.coObras = coObras;
         this.coObras.obraInconclusa = false;
+        this.tareaObreros = new VentanaObreros();
         this.salir = new OptionSalida() {
             @Override
             public void ejecutar() {
@@ -125,6 +128,23 @@ public class Controlador {
             public void focusGained(FocusEvent evt) {
                 userInterface.loginPanel.loginForms.passwordClickeado();
             }
+        });
+        this.tareaObreros.panFondo.panDatos.prAceptar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {
+                entrarAceptarTareasObreros();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                salirAceptarTareasObreros();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                aceptarTareasObreros();
+            }
+
         });
         this.userInterface.loginPanel.loginForms.pfContrasenia.addKeyListener(new KeyAdapter() {
             @Override
@@ -207,6 +227,15 @@ public class Controlador {
                 iniciarObra(coObras.obraEnCurso);
             }
         });
+        this.tareaObreros.panFondo.panDatos.prAceptar.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    aceptarTareasObreros();
+                }
+            }
+
+        });
         Electricista.setMostrarAcciones(WorkersActive.areaElectricista);
         Obrero.setMostrarAcciones(WorkersActive.areaObrero);
         Carpintero.setMostrarAcciones(WorkersActive.areaCarpintero);
@@ -245,6 +274,7 @@ public class Controlador {
             this.userInterface.statusBar.lbStatus.setText(">> Main Menu");
             this.userInterface.mainMenuPanel.workPanel.noObra.prSeleccionarObra.requestFocus();
             if (this.coObras.obraInconclusa) {
+                JOptionPane.showMessageDialog(this.userInterface, "Se encontró una obra inconclusa, se procederá a culminarla", "Obra inconclusa", JOptionPane.INFORMATION_MESSAGE);
                 iniciarObra(this.coObras.obraEnCurso);
             }
 
@@ -271,8 +301,15 @@ public class Controlador {
         this.userInterface.mainMenuPanel.supervisorPanel.lbNombre.setText("Nombre: " + supervisor.getNombre());
         this.userInterface.mainMenuPanel.supervisorPanel.lbApellidos.setText("Apellido: " + supervisor.getApellido());
         this.userInterface.mainMenuPanel.supervisorPanel.lbIDSupervisor.setText("ID Sesión: " + supervisor.getiDSesion());
-        //150
         this.userInterface.mainMenuPanel.supervisorPanel.lbImagenSupervisor.setIcon(new ImageIcon(supervisor.getIcono().getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH)));
+    }
+
+    public void entrarAceptarTareasObreros() {
+        this.tareaObreros.panFondo.panDatos.prAceptar.setBackground(new Color(0, 129, 155));
+    }
+
+    public void salirAceptarTareasObreros() {
+        this.tareaObreros.panFondo.panDatos.prAceptar.setBackground(Color.BLACK);
     }
 
     public void statusBarPresionado(MouseEvent evt) {
@@ -347,8 +384,17 @@ public class Controlador {
 
     public void iniciarObra(Obra obra) {
         if (!this.coObras.obraInconclusa) {
-            llenarTrabajadores();
+            this.coObras.fo.setLocationRelativeTo(userInterface);
+            this.coObras.fo.setVisible(true);
+            this.tareaObreros.setVisible(true);
+        }else{
+            cargarGUIObra();
         }
+    }
+
+    public void cargarGUIObra() {
+        this.tareaObreros.setVisible(false);
+        this.coObras.fo.setVisible(false);
         this.userInterface.mainMenuPanel.workersPanel.wInactive.setVisible(false);
         this.userInterface.mainMenuPanel.workersPanel.wActive.setVisible(true);
         this.userInterface.mainMenuPanel.workPanel.noObra.setVisible(false);
@@ -384,10 +430,10 @@ public class Controlador {
         }
     }
 
-    public void llenarTrabajadores() {
-        electricista = new Electricista(this.coObras.obraEnCurso.getNroElectricistas());
-        carpintero = new Carpintero(this.coObras.obraEnCurso.getNroCarpinteros());
-        obrero = new Obrero(this.coObras.obraEnCurso.getNroObreros());
+    public void llenarTrabajadores(int E, int C, int O) {
+        electricista = new Electricista(this.coObras.obraEnCurso.getNroElectricistas(), E);
+        carpintero = new Carpintero(this.coObras.obraEnCurso.getNroCarpinteros(), C);
+        obrero = new Obrero(this.coObras.obraEnCurso.getNroObreros(), O);
     }
 
     private void cargarArchivos() {
@@ -574,5 +620,18 @@ public class Controlador {
             guardarDatosTrabajadores();
         }
         System.exit(0);
+    }
+
+    public void aceptarTareasObreros() {
+        if (!this.tareaObreros.panFondo.panDatos.validadDatos()) {
+            return;
+        }
+        if (!this.coObras.obraInconclusa) {
+            int elec = Integer.parseInt(this.tareaObreros.panFondo.panDatos.cantElect.getValue().toString());
+            int obre = Integer.parseInt(this.tareaObreros.panFondo.panDatos.cantObre.getValue().toString());
+            int carp = Integer.parseInt(this.tareaObreros.panFondo.panDatos.cantCarp.getValue().toString());
+            llenarTrabajadores(elec, carp, obre);
+        }
+        cargarGUIObra();
     }
 }

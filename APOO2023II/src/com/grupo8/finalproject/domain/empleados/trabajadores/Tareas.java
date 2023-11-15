@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public interface Tareas {
 
-    void llenarTareas();
+    void llenarTareas(int subtareas);
 
     ArrayList<AccionPrincipal> getArrayTareas();
 }

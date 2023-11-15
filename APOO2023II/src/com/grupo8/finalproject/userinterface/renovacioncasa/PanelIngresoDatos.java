@@ -52,12 +52,12 @@ public class PanelIngresoDatos extends JPanel implements ActionListener {
         mifuentePanel = mifuentePanel.deriveFont(Font.PLAIN, 16);
 
         etiquetaSectorCasa = new JLabel("Sector a mejorar:");
-        etiquetaSectorCasa.setBounds(25, 60, 300, 20);
+        etiquetaSectorCasa.setBounds(25, 55, 300, 20);
         etiquetaSectorCasa.setForeground(Color.WHITE);
         etiquetaSectorCasa.setFont(mifuentePanel);
         String[] LugaresDisponibles = {"Cocina", "Dormitorio", "Sala", "Baño"};
         availableLugares = new JComboBox<>(LugaresDisponibles);
-        availableLugares.setBounds(200, 60, 200, 20);
+        availableLugares.setBounds(200, 55, 200, 20);
         availableLugares.setFont(mifuentePanel.deriveFont(Font.PLAIN, 12));
 
         etiquetaNumAmbientes = new JLabel("Número de ambientes:");
@@ -68,33 +68,33 @@ public class PanelIngresoDatos extends JPanel implements ActionListener {
         campoAmbientes.setBounds(200, 20, 65, 20);
 
         etiquetaArea_Sector = new JLabel("Area del sector total:");
-        etiquetaArea_Sector.setBounds(25, 140, 300, 20);
+        etiquetaArea_Sector.setBounds(25, 125, 300, 20);
         etiquetaArea_Sector.setForeground(Color.WHITE);
         etiquetaArea_Sector.setFont(mifuentePanel);
         campoArea_Sector = new JTextField();
-        campoArea_Sector.setBounds(200, 140, 200, 20);
+        campoArea_Sector.setBounds(200, 125, 200, 20);
 
         etiquetaEstado = new JLabel("Optimizar/mejorar:");
-        etiquetaEstado.setBounds(25, 100, 300, 20);
+        etiquetaEstado.setBounds(25, 90, 300, 20);
         etiquetaEstado.setForeground(Color.WHITE);
         etiquetaEstado.setFont(mifuentePanel);
         String[] OptimizaDisponibles = {"Iluminación", "Fluido electrico", "Paredes dañadas"};
         availableOptimiza = new JComboBox<>(OptimizaDisponibles);
         availableOptimiza.setFont(mifuentePanel.deriveFont(Font.PLAIN, 12));
-        availableOptimiza.setBounds(200, 100, 200, 20);
+        availableOptimiza.setBounds(200, 90, 200, 20);
 
         etiquetaDistritos = new JLabel("Distrito:");
-        etiquetaDistritos.setBounds(25, 180, 250, 20);
+        etiquetaDistritos.setBounds(25, 160, 250, 20);
         etiquetaDistritos.setForeground(Color.WHITE);
         etiquetaDistritos.setFont(mifuentePanel);
         String[] distritosDisponibles = {"La Molina", "San Miguel", "San Borja", "Pueblo Libre", "SJL"};
         availableDistritos = new JComboBox<>(distritosDisponibles);
         availableDistritos.setFont(mifuentePanel.deriveFont(Font.PLAIN, 12));
-        availableDistritos.setBounds(200, 180, 200, 20);
+        availableDistritos.setBounds(200, 160, 200, 20);
 
         Color micolorBoton = new Color(110, 190, 170);
         Aceptar = new JButton("Aceptar");
-        Aceptar.setBounds(45, 220, 150, 45);
+        Aceptar.setBounds(45, 195, 150, 45);
         Aceptar.setBackground(micolorBoton);
         Aceptar.setForeground(Color.WHITE);
         Aceptar.setBorder(new LineBorder(micolorBoton, 3, true));
@@ -104,7 +104,7 @@ public class PanelIngresoDatos extends JPanel implements ActionListener {
 
         Color micolorBoton_2 = new Color(240, 30, 80);
         Cancelar = new JButton("Cancelar");
-        Cancelar.setBounds(205, 220, 150, 45);
+        Cancelar.setBounds(205, 195, 150, 45);
         Cancelar.setBackground(micolorBoton_2);
         Cancelar.setForeground(Color.WHITE);
         Cancelar.setBorder(new LineBorder(micolorBoton_2, 5, true));

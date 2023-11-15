@@ -17,10 +17,10 @@ public class Electricista extends Trabajador implements Tareas{
         accionesElectricista = new ArrayList<>();
     }
 
-    public Electricista(int nElectricistas) {
+    public Electricista(int nElectricistas, int subtareas) {
         accionesElectricista = new ArrayList<>();
         this.nElectricistas = nElectricistas;
-        llenarTareas();
+        llenarTareas(subtareas);
     }
 
     public static JTextArea getMostrarAcciones() {
@@ -32,8 +32,8 @@ public class Electricista extends Trabajador implements Tareas{
     }
     
     @Override
-    public void llenarTareas() {
-        accionesElectricista = GestorTrabajador.llenarTareas("Electricista");
+    public void llenarTareas(int subtareas) {
+        accionesElectricista = GestorTrabajador.llenarTareas("Electricista", subtareas);
     }
 
     @Override

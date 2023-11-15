@@ -22,6 +22,8 @@ public class SupervisorPanel extends JPanelRound {
     public JLabel lbApellidos;
     public JLabel lbIDSupervisor;
     public JLabel lbImagenSupervisor;
+    public JLabel lbIconEmpresa;
+    public JLabel lbEmpresa;
 
     public SupervisorPanel() {
         this.setLayout(null);
@@ -41,9 +43,17 @@ public class SupervisorPanel extends JPanelRound {
         }
         custom = custom.deriveFont(Font.PLAIN, 20);
 
+        Font custom2 = new Font("Arial", Font.PLAIN, 20);
+        try {
+            custom2 = Font.createFont(Font.TRUETYPE_FONT, new File("src\\com\\grupo8\\finalproject\\resources\\fonts\\JosefinSans\\JosefinSans-Bold.ttf"));
+        } catch (FontFormatException | IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+        custom2 = custom2.deriveFont(Font.PLAIN, 20);
+
         lbSupervisor = new JLabel("Supervisor");
         lbSupervisor.setBounds(0, 450, 200, 20);
-        lbSupervisor.setFont(custom);
+        lbSupervisor.setFont(custom2);
         lbSupervisor.setHorizontalAlignment(JLabel.CENTER);
         lbSupervisor.setForeground(Color.WHITE);
         this.add(lbSupervisor);

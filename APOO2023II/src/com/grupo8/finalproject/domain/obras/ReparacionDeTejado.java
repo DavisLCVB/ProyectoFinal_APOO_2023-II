@@ -84,7 +84,7 @@ public class ReparacionDeTejado extends Obra implements AccionObras {
         }
     }
 
-    public void CalcularNro_carpinteros() {
+    public void CalcularNroCarpinteros() {
         if (Area_Terreno > 0 && Area_Terreno <= 40.0) {
             NroCarpinteros = 2;
         } else {
@@ -316,9 +316,7 @@ public class ReparacionDeTejado extends Obra implements AccionObras {
         this.Area_Terreno = Area_Terreno;
     }
 
-    @Override
-    public void CalcularNroCarpinteros() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+
 
 }

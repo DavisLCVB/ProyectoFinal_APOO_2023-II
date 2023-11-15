@@ -19,10 +19,10 @@ public class Carpintero extends Trabajador implements Tareas {
         accionesCarpintero = new ArrayList<>();
     }
 
-    public Carpintero(int nPintores) {
+    public Carpintero(int nPintores, int subtareas) {
         this.nCarpinteros = nPintores;
         accionesCarpintero = new ArrayList<>();
-        llenarTareas();
+        llenarTareas(subtareas);
     }
 
     public static JTextArea getMostrarAcciones() {
@@ -34,8 +34,8 @@ public class Carpintero extends Trabajador implements Tareas {
     }
     
     @Override
-    public void llenarTareas() {
-        accionesCarpintero = GestorTrabajador.llenarTareas("Carpintero");
+    public void llenarTareas(int subtareas) {
+        accionesCarpintero = GestorTrabajador.llenarTareas("Carpintero", subtareas);
     }
 
     @Override

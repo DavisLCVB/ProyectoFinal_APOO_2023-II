@@ -17,10 +17,10 @@ public class Obrero extends Trabajador implements Tareas {
         accionesObrero = new ArrayList<>();
     }
 
-    public Obrero(int nObreros) {
+    public Obrero(int nObreros, int subtareas) {
         this.nObreros = nObreros;
         accionesObrero = new ArrayList<>();
-        llenarTareas();
+        llenarTareas(subtareas);
     }
 
     public static JTextArea getMostrarAcciones() {
@@ -32,8 +32,8 @@ public class Obrero extends Trabajador implements Tareas {
     }
     
     @Override
-    public void llenarTareas() {
-        accionesObrero = GestorTrabajador.llenarTareas("Obrero");
+    public void llenarTareas(int subtareas) {
+        accionesObrero = GestorTrabajador.llenarTareas("Obrero", subtareas);
     }
 
     @Override
