@@ -8,9 +8,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-/**
- * @author Davis Cartagena
- */
 public class Obra implements Serializable{
 
     protected String nombreObra;
