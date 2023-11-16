@@ -1,16 +1,8 @@
-/*
- * La clase supervisor es la encargada de controlar a los obreros, así como de
- * generar informe sobre las obras en un archivo externo. Esta clase no tendrá 
- * clases derivadas
- */
 package com.grupo8.finalproject.domain.empleados.gestion;
 
 import com.grupo8.finalproject.utilities.Aleatoriedad;
 import javax.swing.ImageIcon;
 
-/**
- * @author Davis Cartagena
- */
 public class Supervisor {
 
     private int iDSesion;

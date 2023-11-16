@@ -1,6 +1,3 @@
-/*
- * Panel Encargado de obtener la información de la obra
- */
 package com.grupo8.finalproject.userinterface.mainmenu.workpanel;
 
 import java.awt.Color;
@@ -10,9 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 
-/**
- * @author Davis Cartagena
- */
 public class WorkPanel extends JPanel {
 
     public WorkInactive noObra;

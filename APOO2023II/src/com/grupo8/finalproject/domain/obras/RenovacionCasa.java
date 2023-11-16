@@ -1,6 +1,7 @@
 package com.grupo8.finalproject.domain.obras;
 
 import com.grupo8.finalproject.utilities.Aleatoriedad;
+
 import java.util.Date;
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -8,7 +9,6 @@ import java.util.Random;
 
 public class RenovacionCasa extends Obra implements AccionObras {
 
-    // Atributos que se llenarán por ventana
     private int Nro_ambientes;
     protected String Distrito;
     protected String SectoresCasa;

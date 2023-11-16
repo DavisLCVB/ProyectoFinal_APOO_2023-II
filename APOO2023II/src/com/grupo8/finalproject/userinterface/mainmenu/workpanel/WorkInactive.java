@@ -12,9 +12,6 @@ import java.io.IOException;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-/**
- * @author Davis Cartagena
- */
 public class WorkInactive extends JPanel {
 
     private JLabel lbNoObra;

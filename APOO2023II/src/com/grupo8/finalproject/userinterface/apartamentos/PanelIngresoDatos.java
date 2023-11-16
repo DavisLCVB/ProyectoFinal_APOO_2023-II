@@ -11,9 +11,6 @@ import java.util.Date;
 import java.time.LocalDate;
 import javax.swing.border.LineBorder;
 
-/*
- * @author Brayan Goicochea
- */
 public class PanelIngresoDatos extends JPanel {
 
     protected JLabel etiqueta_Numpisos;

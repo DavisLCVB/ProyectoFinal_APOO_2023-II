@@ -1,7 +1,3 @@
-/**
- * Esta clase se centrará en la recepción, comunicación y flujo de datos entre
- * el apartado visual (Interfaces gráficas) y el apartado lógico del programa
- */
 package com.grupo8.finalproject.controller;
 
 import com.grupo8.finalproject.domain.empleados.gestion.AccionPrincipal;
@@ -28,9 +24,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
 
-/**
- * @author Davis Cartagena
- */
 public class Controlador {
 
     private MainWindow userInterface;
@@ -518,7 +511,7 @@ public class Controlador {
             this.coObras.obraEnCurso = (Obra) FileManager.leerArchivo("obrasInconclusas.dat");
             this.coObras.obraInconclusa = true;
             System.out.println(this.coObras.obraEnCurso);
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException | ClassCastException | ClassNotFoundException e) {
             System.out.println("Todo en orden");
         }
     }
@@ -622,7 +615,7 @@ public class Controlador {
         System.exit(0);
     }
 
-    public void aceptarTareasObreros() {
+   public void aceptarTareasObreros() {
         if (!this.tareaObreros.panFondo.panDatos.validadDatos()) {
             return;
         }

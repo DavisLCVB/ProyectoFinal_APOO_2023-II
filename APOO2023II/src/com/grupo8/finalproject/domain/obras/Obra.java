@@ -1,6 +1,3 @@
-/*
- * Clase padre para los tipos de obras que se desarrollarán en el proyecto
- */
 package com.grupo8.finalproject.domain.obras;
 
 import java.io.Serializable;

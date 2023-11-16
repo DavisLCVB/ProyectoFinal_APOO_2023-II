@@ -12,9 +12,6 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.metal.MetalScrollBarUI;
 
-/**
- * @author Davis Cartagena
- */
 public class WorkersActive extends JPanelRound {
 
     private JLabel lbElectricista;

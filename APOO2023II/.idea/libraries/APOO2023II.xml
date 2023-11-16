@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="APOO2023II">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/APOO2023II.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

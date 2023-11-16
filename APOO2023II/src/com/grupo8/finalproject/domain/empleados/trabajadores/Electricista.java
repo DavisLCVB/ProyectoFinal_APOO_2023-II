@@ -5,9 +5,6 @@ import com.grupo8.finalproject.domain.empleados.gestion.GestorTrabajador;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
 
-/**
- * @author Jose Sernaque
- */
 public class Electricista extends Trabajador implements Tareas{
     private int nElectricistas;
     private ArrayList<AccionPrincipal> accionesElectricista;

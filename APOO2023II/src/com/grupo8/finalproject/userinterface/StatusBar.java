@@ -1,6 +1,3 @@
-/*
- * Esta es el panel que permite mover la ventana y salir de la aplicación;
- */
 package com.grupo8.finalproject.userinterface;
 
 import java.awt.Color;
@@ -10,9 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 
-/**
- * @author Davis Cartagena
- */
 public class StatusBar extends JPanel {
 
     public JLabel lbStatus;

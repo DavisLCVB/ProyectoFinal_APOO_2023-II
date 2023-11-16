@@ -3,9 +3,6 @@ package com.grupo8.finalproject.userinterface.confirmlogin;
 import java.awt.Color;
 import javax.swing.*;
 
-/**
- * @author Davis Cartagena
- */
 public class FrameOscuro extends JFrame{
     private PanelOscuro panelOscuro;
 

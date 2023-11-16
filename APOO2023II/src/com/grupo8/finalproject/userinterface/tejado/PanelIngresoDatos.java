@@ -9,9 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 
-/*
- * @author Brayan Goicochea
- */
 public class PanelIngresoDatos extends JPanel {
 
     protected JLabel etiqueta_Numpisos;

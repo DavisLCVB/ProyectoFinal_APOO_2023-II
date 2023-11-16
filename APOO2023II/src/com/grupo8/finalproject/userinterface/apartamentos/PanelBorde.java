@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.grupo8.finalproject.userinterface.apartamentos;
 
 import com.grupo8.finalproject.userinterface.tejado.*;
@@ -10,10 +5,6 @@ import com.grupo8.finalproject.userinterface.apartamentos.*;
 import components.JPanelRound;
 import java.awt.Color;
 
-/**
- *
- * @author leocv
- */
 public class PanelBorde extends JPanelRound {
 
     public PanelBorde() {

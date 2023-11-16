@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Random;
 
-public class ConstruccionEdificioApartamentos extends Obra implements AccionObras, Serializable {
+public class ConstruccionEdificioApartamentos extends Obra implements AccionObras {
 
     /*Atributos que se llenarán por ventana*/
     protected int Nro_pisos;

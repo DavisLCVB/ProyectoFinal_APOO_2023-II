@@ -5,9 +5,6 @@ import com.grupo8.finalproject.domain.empleados.gestion.GestorTrabajador;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
 
-/**
- * @author Nallely Paredes
- */
 public class Obrero extends Trabajador implements Tareas {
     private int nObreros;
     private ArrayList<AccionPrincipal> accionesObrero;

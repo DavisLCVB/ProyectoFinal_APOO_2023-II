@@ -7,10 +7,6 @@ import java.awt.Color;
 import java.awt.Image;
 import javax.swing.*;
 
-/**
- *
- * @author Davis Cartagena
- */
 public class ExitButtonPanel extends JPanel {
 
     public JLabel lbExitButton;

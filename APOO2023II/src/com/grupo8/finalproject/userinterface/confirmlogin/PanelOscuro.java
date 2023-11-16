@@ -3,9 +3,6 @@ package com.grupo8.finalproject.userinterface.confirmlogin;
 import components.JPanelRound;
 import java.awt.Color;
 
-/**
- * @author Davis Cartagena
- */
 public class PanelOscuro extends JPanelRound {
 
     public PanelOscuro() {

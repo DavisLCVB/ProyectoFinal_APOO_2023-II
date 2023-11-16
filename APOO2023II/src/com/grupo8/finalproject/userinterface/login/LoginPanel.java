@@ -1,14 +1,8 @@
-/**
- * Panel encargado de obtener las credenciales de usuario
- */
 package com.grupo8.finalproject.userinterface.login;
 
 import java.awt.Color;
 import javax.swing.*;
 
-/**
- * @author Davis Cartagena
- */
 public class LoginPanel extends JPanel {
 
     public CompanyPanel companyPanel;

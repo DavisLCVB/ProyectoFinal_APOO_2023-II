@@ -13,9 +13,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-/**
- * @author Jose Sernaque
- */
 public class TrabajadorEjecutable implements Runnable {
 
     private ArrayList<AccionPrincipal> acciones;
@@ -24,13 +21,7 @@ public class TrabajadorEjecutable implements Runnable {
     private int num;
 
     public TrabajadorEjecutable(ArrayList<AccionPrincipal> acciones, String tipo) {
-        if (tipo.equalsIgnoreCase("Electricista")) {
-            num = 0;
-        } else if (tipo.equalsIgnoreCase("Obrero")) {
-            num = 1;
-        } else if (tipo.equalsIgnoreCase("Carpintero")) {
-            num = 2;
-        }
+
         this.acciones = acciones;
         this.tipo = tipo;
         fontCustom = new Font("Arial", Font.PLAIN, 15);

@@ -10,10 +10,6 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-/**
- *
- * @author leocv
- */
 public class WorkersInactive extends JPanelRound {
 
     private JLabel lbTrabajador;

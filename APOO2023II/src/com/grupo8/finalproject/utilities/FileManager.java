@@ -1,6 +1,3 @@
-/**
- * Clase encargada de trabajar con archivos
- */
 package com.grupo8.finalproject.utilities;
 
 import java.io.BufferedReader;
@@ -16,9 +13,6 @@ import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-/**
- * @author Davis Cartagena
- */
 public abstract class FileManager {
 
     private static final String ruta = "src\\com\\grupo8\\finalproject\\files\\";
@@ -92,7 +86,7 @@ public abstract class FileManager {
         File archivo = new File(ruta + nombreArchivo);
         if (archivo.exists()) {
             archivo.delete();
+            System.out.println("Se elimino" + ruta + nombreArchivo);
         }
-        System.out.println("Se elimino" + ruta + nombreArchivo);
     }
 }

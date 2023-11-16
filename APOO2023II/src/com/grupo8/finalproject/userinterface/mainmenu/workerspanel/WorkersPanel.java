@@ -1,14 +1,8 @@
-/*
- * Clase encargada de almacenar y mostrar la información de los trabajadores
- */
 package com.grupo8.finalproject.userinterface.mainmenu.workerspanel;
 
 import components.JPanelRound;
 import java.awt.Color;
 
-/**
- * @author Davis Cartagena
- */
 public class WorkersPanel extends JPanelRound {
 
     public WorkersActive wActive;

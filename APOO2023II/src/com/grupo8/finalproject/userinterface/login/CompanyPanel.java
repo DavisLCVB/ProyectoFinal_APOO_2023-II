@@ -1,6 +1,3 @@
-/**
- * Panel encargado de contener el nombre de la empresa y una imagen .gif
- */
 package com.grupo8.finalproject.userinterface.login;
 
 import components.JPanelRound;
@@ -11,9 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 
-/**
- * @author Davis Cartagena
- */
 public class CompanyPanel extends JPanelRound {
 
     private JLabel lbEmpresa;

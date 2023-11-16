@@ -1,8 +1,5 @@
 package com.grupo8.finalproject.domain.obras;
 
-/*
- * @author Brayan Goicochea
- */
 public interface AccionObras {
 
     public void CalcularNroObreros();

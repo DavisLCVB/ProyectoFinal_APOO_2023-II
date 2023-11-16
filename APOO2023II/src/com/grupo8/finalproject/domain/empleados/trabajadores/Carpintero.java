@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
-/**
- * @author Nallely Paredes
- */
 public class Carpintero extends Trabajador implements Tareas {
 
     private int nCarpinteros;

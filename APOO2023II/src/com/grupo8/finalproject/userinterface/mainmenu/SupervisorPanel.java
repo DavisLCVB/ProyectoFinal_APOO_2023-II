@@ -1,6 +1,3 @@
-/*
- * Panel encargado de almacenar la información del supervisor
- */
 package com.grupo8.finalproject.userinterface.mainmenu;
 
 import components.JPanelRound;
@@ -12,9 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 
-/**
- * @author Davis Cartagena
- */
 public class SupervisorPanel extends JPanelRound {
 
     private JLabel lbSupervisor;

@@ -9,9 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 
-/**
- * @author Davis Cartagena
- */
 public class VentanaConfirmacion extends JFrame {
 
     private JPanelRound panelConfirmacion;

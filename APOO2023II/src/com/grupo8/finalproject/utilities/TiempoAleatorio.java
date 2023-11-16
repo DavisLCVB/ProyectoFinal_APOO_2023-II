@@ -1,21 +1,11 @@
-/*
- * Esta clase usa a la clase de Aleatoriedad y nos permite generar un tiempo
- * aleatorio según convenga
- */
 package com.grupo8.finalproject.utilities;
 
-/**
- * @author Davis Cartagena
- */
+
 import java.time.LocalDateTime;
 
-//Clase abstracta para evitar generar objetos
 public abstract class TiempoAleatorio {
 
-    //LocalDateTime es un tipo de variable que almacena fecha y hora exacta
-    //la usaremos para crear la hora futura en la que "terminará" la acción
     private static LocalDateTime ahora;
-    //El rango nos ayuda a definir cuantos segundos despues de los 20 deseamos obtener
     private static int rango;
 
     public static int getRango() {

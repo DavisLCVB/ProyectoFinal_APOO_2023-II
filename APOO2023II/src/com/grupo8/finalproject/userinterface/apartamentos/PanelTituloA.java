@@ -3,10 +3,6 @@ package com.grupo8.finalproject.userinterface.apartamentos;
 import javax.swing.*;
 import java.awt.*;
 
-/*
- * @author Brayan Goicochea
- */
-
 public class PanelTituloA extends JPanel {
 
     protected JLabel etiqueta_bienvenida;

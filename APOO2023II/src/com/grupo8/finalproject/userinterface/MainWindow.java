@@ -14,10 +14,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.*;
 
-/**
- *
- * @author leocv
- */
 public class MainWindow extends JFrame {
 
     public LoginPanel loginPanel;

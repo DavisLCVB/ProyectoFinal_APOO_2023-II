@@ -6,9 +6,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-/*
- * @author Brayan Goicochea
- */
 public class PanelFondo extends JPanelRound {
 
     protected Color micolorAesthetic;

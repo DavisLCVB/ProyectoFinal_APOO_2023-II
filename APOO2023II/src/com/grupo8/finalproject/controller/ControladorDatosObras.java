@@ -13,10 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-/**
- * @author Davis Cartagena
- */
 public class ControladorDatosObras implements ActionListener {
 
     public ApartmentsData apartmentsGUI;
@@ -135,6 +131,8 @@ public class ControladorDatosObras implements ActionListener {
             return apartmentsGUI;
         } else if (roofSelected) {
             return tejadoGUI;
+        } else if(renovSelected){
+            return renovacionGUI;
         }
         return null;
     }

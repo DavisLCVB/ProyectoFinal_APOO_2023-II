@@ -112,6 +112,8 @@ public class GestorSupervisor {
                 try {
                     if (apellido.equals("Sernaque")) {
                         sup = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\images\\supervisores\\JoseSIcono.png");
+                    }else if(apellido.equals("Villanueva")){
+                        //TODO
                     }
                 } catch (Exception e) {
                     sup = new ImageIcon("src\\com\\grupo8\\finalproject\\resources\\media\\images\\usuario.png");
